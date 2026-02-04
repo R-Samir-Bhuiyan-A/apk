@@ -1,0 +1,14 @@
+{
+  "name": "screen-share-server",
+  "version": "1.0.0",
+  "description": "WebSocket server for screen sharing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}

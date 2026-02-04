@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Viewer</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f0f0; color: #333; text-align: center; margin-top: 20px;}
+        #screen { border: 1px solid #ccc; background-color: #000; max-width: 90%; height: auto; }
+        #status { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Live Screen</h1>
+    <p>Status: <span id="status">Connecting...</span></p>
+    <img id="screen" />
+
+    <script>
+        const statusEl = document.getElementById('status');
+        const screenEl = document.getElementById('screen');
+        const ws = new WebSocket('ws://localhost:6967');
+        let imageUrl = null;
+
+        ws.onopen = () => {
+            statusEl.textContent = 'Connected to server. Waiting for phone...';
+        };
+
+        ws.onmessage = event => {
+            if (imageUrl) {
+                URL.revokeObjectURL(imageUrl);
+            }
+            imageUrl = URL.createObjectURL(event.data);
+            screenEl.src = imageUrl;
+            statusEl.textContent = 'Live';
+        };
+
+        ws.onclose = () => {
+            statusEl.textContent = 'Disconnected.';
+        };
+    </script>
+</body>
+</html>
