@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+
+# Android Studio and Gradle
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+build/
+app/build/
+*.apk
+*.aar
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Temp files
+*.tmp
+*.bak
+# Gradle wrapper jars
+gradle-wrapper.jar
